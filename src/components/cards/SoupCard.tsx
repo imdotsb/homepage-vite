@@ -29,21 +29,21 @@ export function SoupCard() {
 
   return (
     <BentoCard className="soup-gradient relative items-center justify-center text-center text-white ring-0 lg:row-span-2">
-      <p className="text-sm text-white/60">Quote of the day</p>
+      <p className="text-sm text-white/60">今日毒鸡汤</p>
       <blockquote
         className={cn(
           "relative z-10 mt-3 text-base font-medium text-white/95 italic",
           loading && "opacity-60",
         )}
       >
-        {quote ?? "Loading…"}
+        {quote ?? "加载中…"}
       </blockquote>
 
       <a
         href="https://www.7ed.net"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="API source"
+        aria-label="查看 API 来源"
         className="absolute top-4 right-4 z-20 text-white/60 hover:text-white"
       >
         <ArrowSquareOutIcon size={16} />
@@ -52,7 +52,7 @@ export function SoupCard() {
         type="button"
         onClick={() => void fetchQuote()}
         disabled={loading}
-        aria-label="Refresh quote"
+        aria-label="换一句"
         className="absolute right-4 bottom-4 z-20 cursor-pointer rounded-full p-1.5 text-white/60 hover:bg-white/15 hover:text-white disabled:opacity-50"
       >
         <ArrowClockwiseIcon

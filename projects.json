@@ -1,49 +1,49 @@
 [
   {
     "name": "JPG",
-    "description": "High-performance image hosting.",
+    "description": "高性能图片托管服务。",
     "url": "https://www.jpgcom.com",
     "domain": "jpgcom.com",
     "icon": "FileImage"
   },
   {
     "name": "PDF",
-    "description": "Online PDF tools.",
+    "description": "在线 PDF 工具。",
     "url": "https://pdf.im.sb",
     "domain": "pdf.im.sb",
     "icon": "FilePdf"
   },
   {
     "name": "Git",
-    "description": "Private Git hosting.",
+    "description": "私有 Git 托管服务。",
     "url": "https://git.im.sb",
     "domain": "git.im.sb",
     "icon": "GitBranch"
   },
   {
     "name": "Check",
-    "description": "Website health checks.",
+    "description": "网站可用性检测。",
     "url": "https://check.im.sb",
     "domain": "check.im.sb",
     "icon": "ShieldCheck"
   },
   {
     "name": "Memos",
-    "description": "Lightweight notes.",
+    "description": "轻量级笔记服务。",
     "url": "https://memos.im.sb",
     "domain": "memos.im.sb",
     "icon": "BookmarkSimple"
   },
   {
     "name": "Temp Mail",
-    "description": "Temporary email with Telegram support.",
+    "description": "支持 Telegram 的临时邮箱。",
     "url": "https://orz.cm",
     "domain": "orz.cm",
     "icon": "EnvelopeSimple"
   },
   {
     "name": "7ED",
-    "description": "More services from the webmaster.",
+    "description": "站长的更多服务。",
     "url": "https://7ed.net",
     "domain": "7ed.net",
     "icon": "DotsThree"

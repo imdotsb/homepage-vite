@@ -18,7 +18,7 @@ export function BingCard() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-sm font-medium text-white"
         >
-          Bing daily picture
+          Bing 每日一图
           <ArrowSquareOutIcon />
         </a>
       </div>

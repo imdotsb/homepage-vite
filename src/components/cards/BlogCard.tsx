@@ -33,7 +33,7 @@ function parsePosts(xml: string): Post[] {
     const title = item.querySelector("title")?.textContent?.trim() || "";
     const link = toHttpUrl(item.querySelector("link")?.textContent?.trim() || "");
     if (link) {
-      posts.push({ title: title || "Untitled post", link });
+      posts.push({ title: title || "未命名文章", link });
     }
   }
   return posts;
@@ -68,10 +68,10 @@ export function BlogCard() {
         <div className="flex items-start justify-between gap-4">
           <div className="grid gap-0.5">
             <Text variant="secondary" size="sm">
-              Latest posts
+              最新文章
             </Text>
             <Text as="h2" variant="heading3">
-              Blog
+              博客
             </Text>
           </div>
           <Link
@@ -81,7 +81,7 @@ export function BlogCard() {
             variant="plain"
             className="flex shrink-0 items-center gap-1 text-sm text-kumo-link"
           >
-            Visit
+            访问博客
             <ArrowSquareOutIcon />
           </Link>
         </div>
@@ -89,17 +89,17 @@ export function BlogCard() {
         <div className="mt-3 grid gap-1">
           {posts === null && !failed && (
             <Text variant="secondary" size="sm">
-              Loading latest posts...
+              正在加载最新文章…
             </Text>
           )}
           {failed && (
             <Text variant="secondary" size="sm">
-              Could not load posts.
+              文章加载失败。
             </Text>
           )}
           {posts?.length === 0 && (
             <Text variant="secondary" size="sm">
-              No posts found.
+              暂无文章。
             </Text>
           )}
           {posts?.map((post) => (

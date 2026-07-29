@@ -50,34 +50,34 @@ const THEME_ICONS: Record<WeatherTheme, Icon> = {
 
 /** WMO weather interpretation codes (Open-Meteo). */
 const WEATHER_DESCRIPTIONS: Record<number, string> = {
-  0: "Clear sky",
-  1: "Mainly clear",
-  2: "Partly cloudy",
-  3: "Overcast",
-  45: "Fog",
-  48: "Rime fog",
-  51: "Light drizzle",
-  53: "Moderate drizzle",
-  55: "Dense drizzle",
-  56: "Light freezing drizzle",
-  57: "Dense freezing drizzle",
-  61: "Slight rain",
-  63: "Moderate rain",
-  65: "Heavy rain",
-  66: "Light freezing rain",
-  67: "Heavy freezing rain",
-  71: "Slight snowfall",
-  73: "Moderate snowfall",
-  75: "Heavy snowfall",
-  77: "Snow grains",
-  80: "Slight rain showers",
-  81: "Moderate rain showers",
-  82: "Violent rain showers",
-  85: "Slight snow showers",
-  86: "Heavy snow showers",
-  95: "Thunderstorm",
-  96: "Thunderstorm with light hail",
-  99: "Thunderstorm with heavy hail",
+  0: "晴",
+  1: "大致晴朗",
+  2: "多云",
+  3: "阴",
+  45: "有雾",
+  48: "雾凇",
+  51: "小毛毛雨",
+  53: "中等毛毛雨",
+  55: "强毛毛雨",
+  56: "轻微冻毛毛雨",
+  57: "强冻毛毛雨",
+  61: "小雨",
+  63: "中雨",
+  65: "大雨",
+  66: "轻微冻雨",
+  67: "强冻雨",
+  71: "小雪",
+  73: "中雪",
+  75: "大雪",
+  77: "米雪",
+  80: "小阵雨",
+  81: "中等阵雨",
+  82: "强阵雨",
+  85: "小阵雪",
+  86: "大阵雪",
+  95: "雷暴",
+  96: "雷暴伴小冰雹",
+  99: "雷暴伴大冰雹",
 };
 
 const RAIN_CODES = [51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82];
@@ -141,9 +141,8 @@ async function loadWeather(): Promise<WeatherState> {
   }
 
   return {
-    city: geo.cityName || "Local weather",
-    description:
-      WEATHER_DESCRIPTIONS[code] ?? "Current conditions unavailable.",
+    city: geo.cityName || "当前位置",
+    description: WEATHER_DESCRIPTIONS[code] ?? "当前天气状况不可用。",
     temp,
     min,
     max,
@@ -177,13 +176,13 @@ export function WeatherCard() {
     <BentoCard className={cn("text-white ring-0", `weather-${theme}`)}>
       <div className="flex items-start justify-between gap-4">
         <div className="grid gap-0.5">
-          <p className="text-sm text-white/80">Local weather</p>
+          <p className="text-sm text-white/80">本地天气</p>
           <h2 className="text-lg font-semibold">
-            {failed ? "Weather unavailable" : (weather?.city ?? "Loading…")}
+            {failed ? "天气不可用" : (weather?.city ?? "加载中…")}
           </h2>
           <p className="text-sm text-white/80">
             {failed
-              ? "Live weather data is unavailable right now."
+              ? "暂时无法获取实时天气数据。"
               : (weather?.description ?? "")}
           </p>
         </div>
@@ -195,7 +194,7 @@ export function WeatherCard() {
       </div>
       <div className="mt-4 text-right">
         <p className="text-5xl font-semibold">
-          {failed ? "N/A" : weather ? `${Math.round(weather.temp)}°` : "--°"}
+          {failed ? "暂无" : weather ? `${Math.round(weather.temp)}°` : "--°"}
         </p>
         <p className="mt-1 text-sm text-white/80">
           {weather

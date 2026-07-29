@@ -11,20 +11,13 @@ interface NodeInfo {
     localPosts: number;
   };
   openRegistrations: boolean;
-  metadata?: { nodeDescription?: string };
-}
-
-/** The node description may contain HTML markup — render it as plain text. */
-function stripHtml(html: string): string {
-  const doc = new DOMParser().parseFromString(html, "text/html");
-  return (doc.body.textContent ?? "").replace(/\s+/g, " ").trim();
 }
 
 function Stat({ value, label }: { value: number | null; label: string }) {
   return (
     <div className="rounded-lg bg-kumo-tint px-3 py-2 text-center">
       <Text as="p" bold truncate>
-        {value === null ? "--" : value.toLocaleString()}
+        {value === null ? "--" : value.toLocaleString("zh-CN")}
       </Text>
       <Text variant="secondary" size="xs" as="p" truncate>
         {label}
@@ -69,19 +62,19 @@ export function MastodonCard() {
             rel="noopener noreferrer"
             variant="plain"
             className="flex shrink-0 items-center gap-1.5"
-            aria-label="Visit imsb.app"
+            aria-label="访问 imsb.app"
           >
             {info !== null && (
               <Badge
                 variant={info.openRegistrations ? "success" : "neutral"}
                 appearance="dot"
               >
-                {info.openRegistrations ? "Open signups" : "Closed signups"}
+                {info.openRegistrations ? "开放注册" : "暂停注册"}
               </Badge>
             )}
             {failed && (
               <Badge variant="neutral" appearance="dot">
-                Status unavailable
+                状态不可用
               </Badge>
             )}
             <span className="text-kumo-subtle">
@@ -91,19 +84,19 @@ export function MastodonCard() {
         </div>
         <Text variant="secondary" size="sm" truncate>
           {failed
-            ? "Failed to load instance data."
+            ? "实例数据加载失败。"
             : info
-              ? stripHtml(info.metadata?.nodeDescription ?? "")
-              : "A mastodon instance hosted by im.sb"}
+              ? "分享、探索、交流，让社交网络重新回到你手中。"
+              : "由 im.sb 托管的 Mastodon 实例"}
         </Text>
       </div>
 
       <div className="mt-4 grid grid-cols-3 gap-3">
-        <Stat value={info?.usage.users.total ?? null} label="Users" />
-        <Stat value={info?.usage.localPosts ?? null} label="Posts" />
+        <Stat value={info?.usage.users.total ?? null} label="用户" />
+        <Stat value={info?.usage.localPosts ?? null} label="帖文" />
         <Stat
           value={info?.usage.users.activeMonth ?? null}
-          label="Active / month"
+          label="月活跃"
         />
       </div>
     </BentoCard>
