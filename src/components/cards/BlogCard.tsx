@@ -10,6 +10,9 @@ interface Post {
 }
 
 const RSS_URL = "https://yxlog.com/feed.xml";
+// yxlog.com 的 feed 没有返回 CORS 头，浏览器端直接 fetch 会被拦下，因此走跨域代理。
+const CORS_PROXY = "https://cors.sevencdn.com/?";
+const FEED_URL = `${CORS_PROXY}${encodeURIComponent(RSS_URL)}`;
 const MAX_POSTS = 3;
 
 function toHttpUrl(link: string): string | null {
@@ -45,7 +48,7 @@ export function BlogCard() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch(RSS_URL)
+    fetch(FEED_URL)
       .then((response) => {
         if (!response.ok) throw new Error("Failed to fetch RSS feed");
         return response.text();
@@ -64,14 +67,11 @@ export function BlogCard() {
 
   return (
     <BentoCard className="sm:col-span-2">
-      <div>
+      <div className="flex flex-1 flex-col">
         <div className="flex items-start justify-between gap-4">
           <div className="grid gap-0.5">
             <Text variant="secondary" size="sm">
               最新文章
-            </Text>
-            <Text as="h2" variant="heading3">
-              博客
             </Text>
           </div>
           <Link
@@ -86,7 +86,7 @@ export function BlogCard() {
           </Link>
         </div>
 
-        <div className="mt-3 grid gap-1">
+        <div className="mt-3 flex flex-1 flex-col gap-1">
           {posts === null && !failed && (
             <Text variant="secondary" size="sm">
               正在加载最新文章…
@@ -108,11 +108,13 @@ export function BlogCard() {
               href={post.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg px-3 py-2 hover:bg-kumo-tint"
+              className="flex flex-1 items-center rounded-lg px-3 hover:bg-kumo-tint"
             >
-              <Text as="p" size="sm" bold truncate>
-                {post.title}
-              </Text>
+              <div className="min-w-0 flex-1">
+                <Text as="p" size="sm" bold truncate>
+                  {post.title}
+                </Text>
+              </div>
             </a>
           ))}
         </div>

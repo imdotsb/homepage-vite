@@ -32,7 +32,7 @@ export function MastodonCard() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch("https://imsb.app/nodeinfo/2.0")
+    fetch("https://toots.social/nodeinfo/2.0")
       .then((response) => {
         if (!response.ok) throw new Error("Network response was not ok");
         return response.json();
@@ -54,15 +54,15 @@ export function MastodonCard() {
       <div className="grid gap-1.5">
         <div className="flex items-start justify-between gap-4">
           <Text as="h2" variant="heading3">
-            im.sb Mastodon
+            Mastodon
           </Text>
           <Link
-            href="https://imsb.app"
+            href="https://toots.social"
             target="_blank"
             rel="noopener noreferrer"
             variant="plain"
             className="flex shrink-0 items-center gap-1.5"
-            aria-label="访问 imsb.app"
+            aria-label="访问 toots.social"
           >
             {info !== null && (
               <Badge
@@ -87,7 +87,7 @@ export function MastodonCard() {
             ? "实例数据加载失败。"
             : info
               ? "分享、探索、交流，让社交网络重新回到你手中。"
-              : "由 im.sb 托管的 Mastodon 实例"}
+              : "由 toots.social 托管的 Mastodon 实例"}
         </Text>
       </div>
 
